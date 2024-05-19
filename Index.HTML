@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav >
+          <div class="left"><h2>To-Do List</h2></div>
+          <div class="right">
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contect">Connect</a></li>
+              <li><a href="#login">Login</a></li>
+    
+            </ul>
+          </div>
+        </nav>
+      </header>
+    <div class="container">
+        <div class="todo-list">
+            <h2>To-Do List <img src="images/icon.png"></h2>
+            <div class="text-row">
+                <input type="text" id="input-box" placeholder="Enter Your Task">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list-container">
+                <!-- <li class="checked">Task 1</li>
+                <li>Task 1</li>
+                <li>Task 3</li> -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js">
+        let inputBox = document.getElementById("input-box");
+        let listContainer = document.querySelector("list-container");
+
+        function addTask() {
+            if (inputBox.value === "") {
+                alert("Please Enter Your Task")
+            } 
+            else {
+                 let li = document.createElement("li");
+                 li.innerHTML = inputBox.value;
+                 listContainer.appendChild(li);
+                 let span = document.createElement("span");
+                 span.innerHTML = "\u00d7";
+                 li.appendChild(span);
+
+            }
+            inputBox.value = "";
+        }
+        listContainer.addEventListener("click", function(e){
+            if(e.target.tagName === "LI"){
+                e.target.classList.toggle("checked");
+            }
+            else if(e.target.tagName === "SPAN"){
+                e.target.parentElement.remove();
+            }
+        },false);
+    </script>
+</body>
+
+</html>
